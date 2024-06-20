@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ce006ff8eace540948d6d845620558, type: 3}
+  m_Name: Graple2
+  m_EditorClassIdentifier: 
+  id: Grapple2
+  tile: {fileID: 11400000, guid: 368bec5925c0461468b40f861f3ac478, type: 2}
+  image: {fileID: -289463247, guid: c2789ff3a20e4204c87119228914ba34, type: 3}
+  tilemap: 22
+  drawCategory: -20
