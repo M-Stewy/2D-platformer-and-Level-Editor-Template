@@ -3,10 +3,14 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.IO;
 using UnityEngine.InputSystem;
+using TMPro;
+using System;
 
 namespace LevelEditor { 
     public class LevelEditorLoadAndSave : MonoBehaviour
     {
+        [SerializeField] public bool LoadOnly;
+
         public static LevelEditorLoadAndSave Instance;
         private void Awake()
         { 
@@ -23,13 +27,27 @@ namespace LevelEditor {
                     }
                 }
             }
+            if (DataStorage.Instance != null)
+                foreach (string str in Directory.GetFiles(Application.dataPath + "/SaveFileFolder", "*.json"))
+                {
+                    string tempString = str.Remove(0, (Application.dataPath + "/SaveFileFolder/").Length);
+                    tempString = tempString.TrimEnd(chars);
+                    if (DataStorage.Instance.levelToLoad == tempString)
+                    {
+                        fileSaveName = DataStorage.Instance.levelToLoad;
+                        LoadLevel();
+                    }
+                }
+            else
+                LoadLevel();
         }
-
+        char[] chars = { '.', 'j', 's', 'o', 'n' };
         public List<CustomTileScritObj> tileScritList = new List<CustomTileScritObj>();
         [SerializeField] List<Tilemap> tilemaps = new List<Tilemap>();
         public Dictionary<int,Tilemap> tilelayers = new Dictionary<int,Tilemap>();
 
-
+        string fileSaveName = "defaultSaveName";
+        [SerializeField] TMP_InputField saveFileNameInput;
 
         public enum TileMaps //These need to the exact same name as the ones in the scene view
         {
@@ -59,8 +77,21 @@ namespace LevelEditor {
                 LoadLevel();
         }
 
-        void SaveLevel()
+        public void SaveAs()
         {
+            fileSaveName = saveFileNameInput.text;
+            Debug.Log(fileSaveName);
+        }
+
+
+        public void SaveLevel()
+        {
+            if(LoadOnly)
+            {
+                Debug.Log("This should not appear :( ");
+                return;
+            }
+
             //create a new leveldata
             LevelData levelData = new LevelData();
 
@@ -102,18 +133,21 @@ namespace LevelEditor {
 
             //save the data as a json
             string json = JsonUtility.ToJson(levelData, true);
-            File.WriteAllText(Application.dataPath + "/testLevel.json", json);//TODO get it to have a custom name for the file
-
+            File.WriteAllText(Application.dataPath + "/SaveFileFolder/" + fileSaveName + ".json", json);
+            if(!Directory.Exists(Application.dataPath + "/SaveFileFolder") )
+            {
+                Directory.CreateDirectory(Application.dataPath + "/SaveFileFolder");
+            }
             //debug
-            Debug.Log("Level was saved");
+            Debug.Log("Level was saved as " + fileSaveName);
         }
 
-        void LoadLevel()
+        public void LoadLevel()
         {
             //load the json file to a leveldata
 
 
-            string json = File.ReadAllText(Application.dataPath + "/testLevel.json");
+            string json = File.ReadAllText(Application.dataPath + "/SaveFileFolder/" + fileSaveName + ".json");
             LevelData levelData = JsonUtility.FromJson<LevelData>(json);
 
             foreach (var data in levelData.layers)
@@ -135,7 +169,23 @@ namespace LevelEditor {
             Debug.Log("Level was loaded");
         }
 
+        public void GetLoadOptions()
+        {
+            foreach (string str in Directory.GetFiles(Application.dataPath + "/SaveFileFolder", "*.json")) 
+            {
+                char[] chars  = {'.','j','s','o','n' };
+                string tempString = str.Remove(0,(Application.dataPath + "/SaveFileFolder/").Length);
+                tempString = tempString.TrimEnd(chars);
+                Debug.Log(tempString);
+            }
+        }
+
     }
+
+   
+
+
+
 
     [System.Serializable]
     public class LevelData

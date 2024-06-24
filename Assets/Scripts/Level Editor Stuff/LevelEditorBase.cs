@@ -33,7 +33,15 @@ namespace LevelEditor
         [SerializeField] Camera cam;
         public int tileIndex;
 
-
+        public void SelectTile(int tileNum)
+        {
+            if (tileNum >= LevelEditorLoadAndSave.Instance.tileScritList.Count || tileNum < 0)
+            {
+                Debug.LogWarning("tile Index out of Bounds");
+            }
+            else
+            tileIndex = tileNum;
+        }
 
         private void NextTile()
         {
