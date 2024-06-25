@@ -17,7 +17,8 @@ public class MenuScript : MonoBehaviour
     bool editing;
     private void Awake()
     {
-        SceneManager.LoadSceneAsync("AlwaysActive",LoadSceneMode.Additive);
+        if (!SceneManager.GetSceneByName("AlwaysActive").isLoaded)
+            SceneManager.LoadSceneAsync("AlwaysActive",LoadSceneMode.Additive);
     }
 
 

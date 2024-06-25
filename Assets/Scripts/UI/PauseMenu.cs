@@ -1,17 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject MenuHolder;
-    [SerializeField] GameObject EditorMenu;
+    [SerializeField] GameObject[] EditorMenu;
 
     bool isPaused;
 
-
+    private void Start()
+    {
+        if(!SceneManager.GetSceneByName("AlwaysActive").isLoaded)
+        {
+            SceneManager.LoadSceneAsync("AlwaysActive", LoadSceneMode.Additive);
+        }
+    }
     public void OnPressPause(InputAction.CallbackContext context)
     {
         if (context.started) { 
@@ -19,7 +26,18 @@ public class PauseMenu : MonoBehaviour
             PauseStuff();
         }
     }
-    //maybe put this indivually in each scene as opposed to the always active?
+
+    public void ResumeButton()
+    {
+        PauseStuff();
+    }
+
+    public void QuitToMainButton()
+    {
+        SceneManager.UnloadSceneAsync(transform.gameObject.scene);
+        SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Additive);
+    }
+
 
     void PauseStuff()
     {
@@ -28,7 +46,8 @@ public class PauseMenu : MonoBehaviour
             isPaused = false;
             Time.timeScale = 1.0f;
             MenuHolder.SetActive(false);
-            EditorMenu.SetActive(false);
+            foreach(GameObject edit in EditorMenu)
+                edit.SetActive(false);
         }
         else if(!isPaused)
         {
@@ -38,7 +57,8 @@ public class PauseMenu : MonoBehaviour
 
             if(DataStorage.Instance.isEditing)
             {
-                EditorMenu.SetActive(true);
+                foreach (GameObject edit in EditorMenu)
+                    edit.SetActive(true);
             }
         }
     }
