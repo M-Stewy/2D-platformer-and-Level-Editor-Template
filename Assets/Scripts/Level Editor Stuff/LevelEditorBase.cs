@@ -30,8 +30,12 @@ namespace LevelEditor
         }
 
         Vector3Int Pos;
+        Vector3Int PrevPos;
         [SerializeField] Camera cam;
         public int tileIndex;
+
+        bool _isPlacing;
+        bool _isDeleting;
 
         public void SelectTile(int tileNum)
         {
@@ -45,7 +49,6 @@ namespace LevelEditor
 
         private void NextTile()
         {
-            Debug.Log("ASD");
             tileIndex++;
             if (tileIndex >= LevelEditorLoadAndSave.Instance.tileScritList.Count)
                 tileIndex = 0;
@@ -60,7 +63,6 @@ namespace LevelEditor
         private void PlaceTile(Vector3Int pos)
         {
             currentTilemap.SetTile(pos, currentTile);
-            //need to figure out how to drag and place....
         }
 
         private void DeleteTile(Vector3Int pos)
@@ -82,13 +84,19 @@ namespace LevelEditor
 
         public void OnPlace(InputAction.CallbackContext context)
         {
-            if (context.started)
+            if (context.performed)
+            {
                 PlaceTile(Pos);
+                _isPlacing = true;
+            }else if(context.canceled)
+            {
+                _isPlacing = false;
+            }
         }
 
         public void OnDelete(InputAction.CallbackContext context)
         {
-            if (context.started)
+            if (context.performed)
                 DeleteTile(Pos); 
         }
 
@@ -96,6 +104,20 @@ namespace LevelEditor
         {
             Pos = currentTilemap.WorldToCell(context.ReadValue<Vector2>());
             Pos = currentTilemap.WorldToCell(cam.ScreenToWorldPoint(Pos));
+        }
+
+
+        private void Update()
+        {
+            if (!_isDeleting && !_isPlacing) return;
+            if(Pos != PrevPos)
+            {
+                if(_isPlacing)
+                    PlaceTile(Pos);
+                
+                if(_isDeleting)
+                    DeleteTile(Pos);
+            }
         }
 
     }
