@@ -39,7 +39,7 @@ public class Grapple2PointState : PlayerState
         if (startGrap && (currentDis > playerData.Grap2MaxDis))
         {
             if (player.rb.velocity.magnitude < playerData.Grap2MaxSpeed)
-                player.rb.AddForce((graple.transform.position - player.transform.position) * playerData.Graple2Speed, ForceMode2D.Impulse);
+                player.rb.AddForce((graple.transform.position - player.transform.position).normalized * playerData.Graple2Speed, ForceMode2D.Impulse);
         }
     }
 
@@ -70,7 +70,9 @@ public class Grapple2PointState : PlayerState
         //    Debug.Log("Current Distance to point = " + currentDis);
             if (currentDis > playerData.Grap2MaxDis)
             {
-                player.rb.AddForce((graple.transform.position - player.transform.position) * playerData.Graple2Speed);
+                //player.rb.AddForce((graple.transform.position - player.transform.position) * playerData.Graple2Speed);
+                //trying something
+                player.rb.velocity = (graple.transform.position - player.transform.position).normalized * playerData.Grap2MaxSpeed;
             }
             if (currentDis <= playerData.Grap2MaxDis)
             {

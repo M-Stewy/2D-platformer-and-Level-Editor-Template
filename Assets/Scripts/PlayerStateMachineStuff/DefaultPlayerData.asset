@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c76d136c291a448b3d6eecc561d63c, type: 3}
   m_Name: DefaultPlayerData
   m_EditorClassIdentifier: 
-  isFacingRight: 1
+  isFacingRight: 0
   GroundLayer:
     serializedVersion: 2
     m_Bits: 72
@@ -54,7 +54,7 @@ MonoBehaviour:
   LaymaskGrapple2:
     serializedVersion: 2
     m_Bits: 128
-  Graple2Speed: 0.5
+  Graple2Speed: 50
   Grap2Dis: 25
   Grap2MaxDis: 2.5
   Grap2MaxSpeed: 50

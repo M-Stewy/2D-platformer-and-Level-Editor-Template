@@ -5,6 +5,7 @@ using System.IO;
 using UnityEngine.InputSystem;
 using TMPro;
 using System;
+using UnityEngine.EventSystems;
 
 namespace LevelEditor { 
     public class LevelEditorLoadAndSave : MonoBehaviour
@@ -49,6 +50,8 @@ namespace LevelEditor {
         string fileSaveName = "defaultSaveName";
         [SerializeField] TMP_InputField saveFileNameInput;
 
+        
+
         public enum TileMaps //These need to the exact same name as the ones in the scene view
         {
             FarBackground = -20,
@@ -79,10 +82,22 @@ namespace LevelEditor {
 
         public void SaveAs()
         {
+            saveFileNameInput.gameObject.SetActive(true);
+            
+        }
+        
+        public void SavingAs()
+        {
             fileSaveName = saveFileNameInput.text;
             Debug.Log(fileSaveName);
+            SaveLevel();
+            saveFileNameInput.gameObject.SetActive(false);
         }
 
+        public void CanceledSaveAs()
+        {
+            saveFileNameInput.gameObject.SetActive(false);
+        }
 
         public void SaveLevel()
         {
