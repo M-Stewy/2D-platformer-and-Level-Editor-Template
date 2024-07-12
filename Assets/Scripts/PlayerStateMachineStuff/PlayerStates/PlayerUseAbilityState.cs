@@ -25,7 +25,7 @@ public class PlayerUseAbilityState : PlayerState
         switch (player.CurrentAbility.name)
         {
             case "NoAbility":
-                playerStateMachine.ChangeState(player.idleState);
+                playerStateMachine.ChangeState(player.inAirState);
                 break;
             case "Grappling":
                 playerStateMachine.ChangeState(player.grapplingState);

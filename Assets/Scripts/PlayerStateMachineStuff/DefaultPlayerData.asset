@@ -23,8 +23,8 @@ MonoBehaviour:
   SprintSpeed: 60
   CrouchSpeed: 15
   SlideSpeedBoost: 25
-  JumpPower: 35
-  JumpTime: 15
+  JumpPower: 5
+  JumpTime: 25
   TotalJumps: 1
   CyoteTime: 20
   GroundDrag: 1

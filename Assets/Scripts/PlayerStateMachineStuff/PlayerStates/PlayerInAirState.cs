@@ -11,23 +11,7 @@ public class PlayerInAirState : PlayerState
     float xInput;
     public override void Checks()
     {
-
         base.Checks();
-        
-        if(player.isGrounded)
-        {
-            playerStateMachine.ChangeState(player.landedState);
-        }
-
-        if(player.inputHandler.holdingCrouch && player.inputHandler.holdingSprint)
-        {
-            playerStateMachine.ChangeState(player.airSlideState);
-        }
-
-        if (player.inputHandler.PressedAbility1)
-        {
-            playerStateMachine.ChangeState(player.useAbilityState);
-        }
     }
 
     public override void Enter()
@@ -71,5 +55,18 @@ public class PlayerInAirState : PlayerState
         player.rb.drag = playerData.AirDrag;
 
         base.Update();
+
+        if (player.isGrounded)
+        {
+            playerStateMachine.ChangeState(player.landedState);
+        }
+        if (player.inputHandler.holdingCrouch && player.inputHandler.holdingSprint)
+        {
+            playerStateMachine.ChangeState(player.airSlideState);
+        }
+        if (player.inputHandler.PressedAbility1)
+        {
+            playerStateMachine.ChangeState(player.useAbilityState);
+        }
     }
 }

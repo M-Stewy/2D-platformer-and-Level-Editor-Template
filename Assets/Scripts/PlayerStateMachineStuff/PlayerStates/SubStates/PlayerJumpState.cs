@@ -1,3 +1,5 @@
+using System;
+using System.Diagnostics;
 /// <summary>
 /// Made by Stewy
 /// 
@@ -13,17 +15,15 @@ public class PlayerJumpState : PlayerState
 
     float jumpTimer = 0;
     float xInput;
-    int remainingJumps;
+    float startXinput = 0;
     //I dont think Im doing this in a very smart way right now and its 3AM so I will 
     // do the rest of this tomorrow I think
+    //      ^ this guy is a liar!
 
 
     public override void Checks()
     {
         base.Checks();
-        //this currently does nothing, but its here incase anyone wants to add double jump
-        //some work would need to be done to get it properly implemeted but it shouldnt be too hard
-        remainingJumps = playerData.TotalJumps;
 
         if (player.inputHandler.PressedAbility1)
         {
@@ -39,13 +39,10 @@ public class PlayerJumpState : PlayerState
         // testing this currently
         player.PlayAudioFile(playerData.JumpSFX, true);
 
-       
-
         player.rb.drag = playerData.AirDrag;
 
         jumpTimer = 0;
-
-        remainingJumps--;
+        startXinput = player.inputHandler.moveDir.x;
     }
 
     public override void Exit()
@@ -57,7 +54,7 @@ public class PlayerJumpState : PlayerState
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-        player.rb.AddForce(new UnityEngine.Vector2(xInput * playerData.baseMoveSpeed, 0));
+        //player.rb.AddForce(new UnityEngine.Vector2(xInput * playerData.baseMoveSpeed, 0));
         if (!player.inputHandler.HoldingJump)
         {
             playerStateMachine.ChangeState(player.inAirState);
@@ -65,23 +62,34 @@ public class PlayerJumpState : PlayerState
         }
 
         jumpTimer++;
+       
 
         if (jumpTimer > playerData.JumpTime)
         {
             playerStateMachine.ChangeState(player.inAirState);
+            return;
         }
 
-        if (player.inputHandler.holdingSprint)
+        /*if (player.inputHandler.holdingSprint)
             player.rb.AddForce(new UnityEngine.Vector2((xInput * playerData.baseMoveSpeed) / 100, playerData.JumpPower / 20), UnityEngine.ForceMode2D.Impulse);
         else
-            player.rb.AddForce(new UnityEngine.Vector2(0, playerData.JumpPower / 20), UnityEngine.ForceMode2D.Impulse);
+            player.rb.AddForce(new UnityEngine.Vector2((xInput * playerData.baseMoveSpeed) / 500, playerData.JumpPower / 20), UnityEngine.ForceMode2D.Impulse);
+        */
+        if(startXinput == 0)
+            player.rb.AddForce(UnityEngine.Vector2.up * playerData.JumpPower, UnityEngine.ForceMode2D.Impulse);
+       else
+            player.rb.AddForce((UnityEngine.Vector2.up * playerData.JumpPower) / 3, UnityEngine.ForceMode2D.Impulse);
+        /*
+            if (player.inputHandler.holdingSprint)
+                player.rb.AddForce(new UnityEngine.Vector2(xInput * playerData.SprintSpeed/2, 0), UnityEngine.ForceMode2D.Force);
+            else
+                player.rb.AddForce(new UnityEngine.Vector2(xInput * playerData.baseMoveSpeed/10, 0), UnityEngine.ForceMode2D.Force);
+        */
     }
 
     public override void Update()
     {
         base.Update();
-        
-
         xInput = player.inputHandler.moveDir.x;
         
     }
