@@ -67,6 +67,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
             HoldingJump = true;
             PressedJump = true;
+            StopPress();
         }
         else if (context.canceled)
         {
@@ -121,6 +122,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         PressedAbility1 = false;
+        PressedJump = false;
     }
 
     void Update()

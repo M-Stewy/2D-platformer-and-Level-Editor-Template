@@ -23,8 +23,8 @@ MonoBehaviour:
   SprintSpeed: 60
   CrouchSpeed: 15
   SlideSpeedBoost: 25
-  JumpPower: 5
-  JumpTime: 25
+  JumpPower: 7.5
+  JumpTime: 15
   TotalJumps: 1
   CyoteTime: 20
   GroundDrag: 1
@@ -54,10 +54,10 @@ MonoBehaviour:
   LaymaskGrapple2:
     serializedVersion: 2
     m_Bits: 128
-  Graple2Speed: 50
-  Grap2Dis: 25
+  Graple2Speed: 75
+  Grap2Dis: 50
   Grap2MaxDis: 2.5
-  Grap2MaxSpeed: 50
+  Grap2MaxSpeed: 75
   AudioCutoffTime: 20
   JumpSFX: {fileID: 8300000, guid: ed7e5aeaecfa31145962605a4a4ec106, type: 3}
   WalkingSFX: {fileID: 8300000, guid: 12e25b1b9762c614c9da9b585fbaf650, type: 3}
