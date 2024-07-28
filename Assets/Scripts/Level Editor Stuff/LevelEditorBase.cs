@@ -37,8 +37,15 @@ namespace LevelEditor
         bool _isPlacing;
         bool _isDeleting;
 
+
+        private bool canPlace;
+        public void CanPlace(bool y)
+        {
+            canPlace = y;
+        }
         public void SelectTile(int tileNum)
         {
+            
             if (tileNum >= LevelEditorLoadAndSave.Instance.tileScritList.Count || tileNum < 0)
             {
                 Debug.LogWarning("tile Index out of Bounds");
@@ -62,11 +69,13 @@ namespace LevelEditor
 
         private void PlaceTile(Vector3Int pos)
         {
+            if (!canPlace) return;
             currentTilemap.SetTile(pos, currentTile);
         }
 
         private void DeleteTile(Vector3Int pos)
         {
+            if (!canPlace) return;
             currentTilemap.SetTile(pos, null);
         }
 
@@ -104,6 +113,7 @@ namespace LevelEditor
         {
             Pos = currentTilemap.WorldToCell(context.ReadValue<Vector2>());
             Pos = currentTilemap.WorldToCell(cam.ScreenToWorldPoint(Pos));
+            
         }
 
 

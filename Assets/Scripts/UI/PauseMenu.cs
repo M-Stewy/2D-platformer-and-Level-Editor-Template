@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class PauseMenu : MonoBehaviour
 
     bool isPaused;
 
+    [SerializeField] UnityEvent Paused;
+    [SerializeField] UnityEvent UnPaused;
     private void Start()
     {
         if(!SceneManager.GetSceneByName("AlwaysActive").isLoaded)
@@ -43,6 +46,7 @@ public class PauseMenu : MonoBehaviour
     {
         if(isPaused)
         {
+            UnPaused.Invoke();
             isPaused = false;
             Time.timeScale = 1.0f;
             MenuHolder.SetActive(false);
@@ -51,6 +55,7 @@ public class PauseMenu : MonoBehaviour
         }
         else if(!isPaused)
         {
+            Paused.Invoke();
             isPaused = true;
             Time.timeScale = 0.0f;
             MenuHolder.SetActive(true);
