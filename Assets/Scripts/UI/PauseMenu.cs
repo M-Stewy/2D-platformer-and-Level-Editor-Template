@@ -37,6 +37,7 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitToMainButton()
     {
+        Time.timeScale = 1.0f;
         SceneManager.UnloadSceneAsync(transform.gameObject.scene);
         SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Additive);
     }

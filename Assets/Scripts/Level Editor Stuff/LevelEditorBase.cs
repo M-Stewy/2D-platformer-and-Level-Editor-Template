@@ -111,6 +111,7 @@ namespace LevelEditor
 
         public void OnMoveMouse(InputAction.CallbackContext context)
         {
+            if(!canPlace) return;
             Pos = currentTilemap.WorldToCell(context.ReadValue<Vector2>());
             Pos = currentTilemap.WorldToCell(cam.ScreenToWorldPoint(Pos));
             
