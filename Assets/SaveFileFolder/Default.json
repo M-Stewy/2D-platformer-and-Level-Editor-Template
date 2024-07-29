@@ -1,0 +1,61 @@
+{
+    "layers": [
+        {
+            "layer_id": 10,
+            "tiles": [
+                "FloorRule",
+                "FloorRule",
+                "FloorRule",
+                "FloorRule",
+                "FloorRule",
+                "FloorRule"
+            ],
+            "xPos": [
+                6,
+                7,
+                8,
+                9,
+                10,
+                11
+            ],
+            "yPos": [
+                -3,
+                -3,
+                -3,
+                -3,
+                -3,
+                -3
+            ]
+        },
+        {
+            "layer_id": 20,
+            "tiles": [],
+            "xPos": [],
+            "yPos": []
+        },
+        {
+            "layer_id": 22,
+            "tiles": [],
+            "xPos": [],
+            "yPos": []
+        },
+        {
+            "layer_id": -10,
+            "tiles": [],
+            "xPos": [],
+            "yPos": []
+        },
+        {
+            "layer_id": -20,
+            "tiles": [],
+            "xPos": [],
+            "yPos": []
+        },
+        {
+            "layer_id": 15,
+            "tiles": [],
+            "xPos": [],
+            "yPos": []
+        }
+    ]
+}

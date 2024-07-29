@@ -57,8 +57,10 @@ namespace LevelEditor {
             FarBackground = -20,
             Background = -10,
             Floor = 10,
+            BadTile = 15,
             Grapple1 = 20,
             Grapple2 = 22,
+            RespawnTile = 100
 
         }
 
