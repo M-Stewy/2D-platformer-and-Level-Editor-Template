@@ -8,17 +8,32 @@
                 "FloorRule",
                 "FloorRule",
                 "FloorRule",
+                "FloorRule",
+                "FloorRule",
+                "FloorRule",
+                "FloorRule",
+                "FloorRule",
                 "FloorRule"
             ],
             "xPos": [
-                6,
-                7,
-                8,
-                9,
-                10,
-                11
+                -6,
+                -5,
+                -4,
+                -3,
+                -2,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4
             ],
             "yPos": [
+                -3,
+                -3,
+                -3,
+                -3,
+                -3,
                 -3,
                 -3,
                 -3,
@@ -53,6 +68,12 @@
         },
         {
             "layer_id": 15,
+            "tiles": [],
+            "xPos": [],
+            "yPos": []
+        },
+        {
+            "layer_id": 100,
             "tiles": [],
             "xPos": [],
             "yPos": []
