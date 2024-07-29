@@ -34,7 +34,7 @@ namespace LevelEditor
             {
                 camZoomLevel += ZoomSens;
                 camZoomLevel = Mathf.Clamp(camZoomLevel, minCamZoom, maxCamZoom);
-                Debug.Log(camZoomLevel);
+             //   Debug.Log(camZoomLevel);
                 _mainCamVirtualCamera.m_Lens.OrthographicSize = camZoomLevel;
             }
         }
