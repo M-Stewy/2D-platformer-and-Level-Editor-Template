@@ -12,4 +12,7 @@ public class CustomTileScritObj : ScriptableObject
 
         public LevelEditor.LevelEditorLoadAndSave.TileMaps tilemap;
         public LevelEditor.LevelEditorLoadAndSave.Categories drawCategory;
+
+    
+    public int numID;
 }

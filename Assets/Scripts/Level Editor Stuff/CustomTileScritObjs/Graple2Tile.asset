@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39ce006ff8eace540948d6d845620558, type: 3}
-  m_Name: Graple2
+  m_Name: Graple2Tile
   m_EditorClassIdentifier: 
   id: Grapple2
   tile: {fileID: 11400000, guid: 368bec5925c0461468b40f861f3ac478, type: 2}
   image: {fileID: -289463247, guid: c2789ff3a20e4204c87119228914ba34, type: 3}
   tilemap: 22
   drawCategory: -20
+  numID: 2
