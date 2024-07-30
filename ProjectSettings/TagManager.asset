@@ -39,6 +39,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackGrid
+    uniqueID: 2707414929
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
