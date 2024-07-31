@@ -106,7 +106,13 @@ namespace LevelEditor
         public void OnDelete(InputAction.CallbackContext context)
         {
             if (context.performed)
-                DeleteTile(Pos); 
+            {
+                DeleteTile(Pos);
+                _isDeleting = true;
+            }else if (context.canceled)
+            {
+                _isDeleting= false;
+            }
         }
 
         public void OnMoveMouse(InputAction.CallbackContext context)
