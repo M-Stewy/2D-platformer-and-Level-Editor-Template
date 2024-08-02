@@ -79,21 +79,19 @@ public class PlayerData : ScriptableObject
     public float GrappleDistance = 25f;
     [Space]
 
-    [Header("Gun Stuff")]
-    [Tooltip("Bullet the player shoots out of the gun")]
-    public GameObject playerBullet;
-    public float gunForce;
-    public int MaxShots = 7;
-    public int AmmoLeft;
-    public float BulletForce = 50;
-
-    [Space]
     [Header("Grapple Type 2")]
     public LayerMask LaymaskGrapple2;
     public float Graple2Speed;
     public float Grap2Dis;
     public float Grap2MaxDis;
     public float Grap2MaxSpeed;
+
+    [Space]
+    [Header("Inverse Grapple")]
+    public LayerMask LaymaskInverGrapp;
+    public float InverGrapSpeed;
+    public float InverGrapDis;
+    public float InverMaxDis;
 
 
     [Space(16)]

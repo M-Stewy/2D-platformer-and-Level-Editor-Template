@@ -1,17 +1,11 @@
-using Unity.VisualScripting;
 using UnityEngine;
-
-public class Grapple2PointState : PlayerState
+public class Grapple2PointState : GenericGrappleState
 {
     public Grapple2PointState(Player player, PlayerData playerData, PlayerStateMachine playerStateMachine, string playerAnim) : base(player, playerData, playerStateMachine, playerAnim)
     {
     }
     LayerMask GrapHitted;
-    Vector2 direction;
     float currentDis;
-    bool missedGrap;
-    bool startGrap;
-    GameObject graple;
     public override void Checks()
     {
         base.Checks();
@@ -23,13 +17,12 @@ public class Grapple2PointState : PlayerState
         startGrap = false;
         
         base.Enter();
-        ShootSwingPoint();
+        ShootSwingPoint(GrapHitted, playerData.Grap2Dis,playerData.LaymaskGrapple2, false);
     }
 
     public override void Exit()
     {
         base.Exit();
-        DestoryGrapPoints();
     }
 
     public override void FixedUpdate()
@@ -47,22 +40,6 @@ public class Grapple2PointState : PlayerState
     {
         base.Update();
 
-        if (player.inputHandler.PressedJump)
-        {
-            playerStateMachine.ChangeState(player.jumpState);
-        }
-        if (player.inputHandler.PressedAbility2)
-        {
-            playerStateMachine.ChangeState(player.inAirState);
-        }
-        if (player.inputHandler.PressedAbility1)
-        {
-            playerStateMachine.ChangeState(player.useAbilityState);
-        }
-        if (missedGrap)
-        {
-            playerStateMachine.ChangeState(player.inAirState);
-        }
         if(startGrap)
         {
             player.lr.SetPosition(0, player.hand.transform.position);
@@ -82,6 +59,13 @@ public class Grapple2PointState : PlayerState
         
     }
 
+    public override void ShootSwingPoint(LayerMask GrapHitLay, float thisGrapDist, LayerMask thisGrapLayer, bool useDJ)
+    {
+        base.ShootSwingPoint(GrapHitLay, thisGrapDist, thisGrapLayer, useDJ);
+        
+    }
+
+    /*
     private void ShootSwingPoint()
     {
         player.AbiltySoundEffect(playerData.ShootGrappleSFX);
@@ -152,5 +136,5 @@ public class Grapple2PointState : PlayerState
         player.lr.enabled = false;
 
     }
-
+    */
 }

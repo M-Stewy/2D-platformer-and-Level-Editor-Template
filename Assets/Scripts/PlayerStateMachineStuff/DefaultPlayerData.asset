@@ -38,7 +38,7 @@ MonoBehaviour:
   AirGravity: 5
   SlowFallGravity: 0
   AllAbilitiesUnlocked: 1
-  DebugAbilitySwitching: 1
+  DebugAbilitySwitching: 0
   GrapplePointSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   LaymaskGrapple:
     serializedVersion: 2
@@ -46,11 +46,6 @@ MonoBehaviour:
   GrappleReelSpeed: 35
   GrappleSwingSpeed: 75
   GrappleDistance: 30
-  playerBullet: {fileID: 7928200351476023610, guid: 765e767cab148b64bad829cb45569f71, type: 3}
-  gunForce: 3
-  MaxShots: 7
-  AmmoLeft: 7
-  BulletForce: 1000
   LaymaskGrapple2:
     serializedVersion: 2
     m_Bits: 128
@@ -58,6 +53,12 @@ MonoBehaviour:
   Grap2Dis: 50
   Grap2MaxDis: 2.5
   Grap2MaxSpeed: 75
+  LaymaskInverGrapp:
+    serializedVersion: 2
+    m_Bits: 64
+  InverGrapSpeed: 66
+  InverGrapDis: 10
+  InverMaxDis: 15
   AudioCutoffTime: 20
   JumpSFX: {fileID: 8300000, guid: ed7e5aeaecfa31145962605a4a4ec106, type: 3}
   WalkingSFX: {fileID: 8300000, guid: 12e25b1b9762c614c9da9b585fbaf650, type: 3}

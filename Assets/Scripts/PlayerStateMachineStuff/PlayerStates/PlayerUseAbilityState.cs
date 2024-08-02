@@ -28,14 +28,14 @@ public class PlayerUseAbilityState : PlayerState
                 playerStateMachine.ChangeState(player.inAirState);
                 break;
             case "Grappling":
-                playerStateMachine.ChangeState(player.grapplingState);
+                playerStateMachine.ChangeState(player.grappleBState);
                 break;
             case "Grapple2":
                 playerStateMachine.ChangeState(player.grapple2State);
                 break;
-                //case "Gun":
-                //   playerStateMachine.ChangeState(player.shootGunState);
-                //  break;
+            case "InverseGrapple":
+               playerStateMachine.ChangeState(player.inverseGrapple);
+               break;
             default:
                 Debug.Log("This should not be Printing");
                 playerStateMachine.ChangeState(player.idleState);

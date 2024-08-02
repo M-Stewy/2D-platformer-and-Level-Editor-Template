@@ -127,36 +127,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     void Update()
     {
-    //    moveDir = new Vector2(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"));
-    //    moveDirRaw = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
-    /*
-        HoldingJump = checkForKeyPress(_jump, _jumpController);
-
-        PressedJump = checkForKeyQuickPress(_jump, _jumpController);
-
-        HoldingUp = checkForKeyPress(_up, _upController);
-
-        HoldingDown = checkForKeyPress(_down, _downController);
-
-        holdingCrouch = checkForKeyPress(_crouch, _crouchController);
-
-        PressedCrouch = checkForKeyQuickPress(_crouch, _crouchController);
-
-        holdingSprint = checkForKeyPress(_sprint, _sprintController);
-
-        switchAbiltiyPressed = checkForKeyQuickPress(_switchAbility);
-
-        PressedAbility1 = checkForKeyQuickPress(_ability1, _ability1Controller);
-
-        PressedAbility2 = checkForKeyQuickPress(_ability2, _ability2Controller);
-
-        //HoldingAbility1 = checkForKeyPress(_ability1, _ability1Controller);
-
-        SwitchAbilityUpC = checkForKeyQuickPress(_SwitchAbilityUpC);
-        SwitchAbilityDownC = checkForKeyQuickPress(_SwitchAbilityDownC);
-
-    */
+    
             Cursor.visible = true;
     //        ControllerCursor.SetActive(false);
     //        HoldingAbility1 = checkForKeyPress(_ability1, _ability1Controller);
@@ -185,6 +156,7 @@ public class PlayerInputHandler : MonoBehaviour
     
     public void setAllToZero()
     {
+
         /*
         HoldingJump = false;
         holdingCrouch = false;

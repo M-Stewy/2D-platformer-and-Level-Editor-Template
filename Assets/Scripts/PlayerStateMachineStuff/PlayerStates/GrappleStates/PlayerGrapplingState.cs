@@ -15,6 +15,13 @@ using UnityEngine;
 /// </summary>
 public class PlayerGrapplingState : PlayerState
 {
+
+    //------------------------------ DEPRECEATED ------------------------------
+    //------------------------------ no longer used ------------------------------
+    //------------------------------ keeping for now ------------------------------
+    //------------------------------ because uhh -----------------------------------
+    //------------------------------ I dont know man -----------------------------
+    //------------------------------ DEPRECEATED ------------------------------
     public PlayerGrapplingState(Player player, PlayerData playerData, PlayerStateMachine playerStateMachine, string playerAnim) : base(player, playerData, playerStateMachine, playerAnim)
     {
     }

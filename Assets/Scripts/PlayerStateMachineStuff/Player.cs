@@ -31,8 +31,8 @@ public class Player : MonoBehaviour
 //    public PlayerAbility GunAbility;
     [HideInInspector]
     public PlayerAbility Grapple2Ability;
-    //[HideInInspector]
-    //public PlayerAbility SlowFallAbility;
+    [HideInInspector]
+    public PlayerAbility GrappleInverse;
 
 
     //These are all the state scripts that the player can switch between
@@ -52,9 +52,9 @@ public class Player : MonoBehaviour
     public PlayerLandedState landedState { get; private set; }
     public PlayerInAirSlideState airSlideState { get; private set; }
     public PlayerGrapplingState grapplingState { get; private set; }
-    public PlayerShootGunState shootGunState { get; private set; }
+    public BasicSwingGrappleState grappleBState { get; private set; }
     public Grapple2PointState grapple2State { get; private set; }
-    
+    public GrappleInvertedState inverseGrapple { get; private set; }
 
 
     public PlayerInputHandler inputHandler { get; private set; }
@@ -123,9 +123,11 @@ public class Player : MonoBehaviour
         landedState = new PlayerLandedState(this, playerData, PSM, "Landed");
         airSlideState = new PlayerInAirSlideState(this, playerData, PSM, "InAirSlideAnim");
         grapplingState = new PlayerGrapplingState(this, playerData, PSM, "IsGrapplingAnim");
-        shootGunState = new PlayerShootGunState(this, playerData, PSM, "null");
-        grapple2State = new Grapple2PointState(this,playerData, PSM, "null");
+        //shootGunState = new PlayerShootGunState(this, playerData, PSM, "null");
 
+        grappleBState = new BasicSwingGrappleState(this, playerData, PSM, "IsGrapplingAnim");
+        grapple2State = new Grapple2PointState(this,playerData, PSM, "IsGrapplingAnim"); //replace anims if you want abilties to look different
+        inverseGrapple = new GrappleInvertedState(this, playerData, PSM, "IsGrapplingAnim");
 
         inputHandler = GetComponent<PlayerInputHandler>();
         rb = GetComponent<Rigidbody2D>();
@@ -144,12 +146,12 @@ public class Player : MonoBehaviour
         GrappleAbility = new PlayerAbility(false, false, "Grappling", "HoldingGrapple", "ShootGrapple");
     //    GunAbility = new PlayerAbility(false, false, "Gun", "HoldingGun", "ShootGun");
         Grapple2Ability = new PlayerAbility(false, false, "Grapple2", "HoldingGrapple", "ShootGrapple"); //Probably changes these to have unique anims later
-        
+        GrappleInverse = new PlayerAbility(false, false, "InverseGrapple", "HoldingGrapple", "ShootGrapple");
 
         AllAbilities.Add(NoAbility);
         AllAbilities.Add(GrappleAbility);
         AllAbilities.Add(Grapple2Ability);
-    //    AllAbilities.Add(GunAbility);
+        AllAbilities.Add(GrappleInverse);
         //AllAbilities.Add(SlowFallAbility);
 
         respawnPoint = transform;
@@ -162,15 +164,14 @@ public class Player : MonoBehaviour
 
         //this makes it so all abilities are aviable by default, mainly for testing purposes
         if (playerData.AllAbilitiesUnlocked) {
-            GrappleAbility.SetUnlocked(true);
-            Grapple2Ability.SetUnlocked(true);
-        //    GunAbility.SetUnlocked(true);
-            //SlowFallAbility.SetUnlocked(true);
+            foreach(PlayerAbility a in AllAbilities)
+            {
+                a.SetUnlocked(true);
+            }
         }
         NoAbility.SetUnlocked(true);
         CurrentAbility = NoAbility;
 
-        playerData.AmmoLeft = playerData.MaxShots;
 
     }
 
@@ -522,14 +523,11 @@ public class Player : MonoBehaviour
         GetComponent<PlayerInputHandler>().enabled = true;
     }
 
-    public void ResetAmmo()
+    
+    public void recieveHealth()
     {
-        playerData.AmmoLeft = playerData.MaxShots;
+        GameObject.FindWithTag("Player").GetComponent<Player>().playerData.health = GameObject.FindWithTag("Player").GetComponent<Player>().playerData.health + 1;
     }
-        public void recieveHealth()
-        {
-            GameObject.FindWithTag("Player").GetComponent<Player>().playerData.health = GameObject.FindWithTag("Player").GetComponent<Player>().playerData.health + 1;
-        }
 
        
 
