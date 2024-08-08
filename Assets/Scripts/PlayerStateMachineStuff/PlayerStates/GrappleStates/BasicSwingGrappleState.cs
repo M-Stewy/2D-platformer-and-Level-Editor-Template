@@ -42,19 +42,24 @@ public class BasicSwingGrappleState : GenericGrappleState
     {
         base.FixedUpdate();
 
-        player.rb.AddForce(new Vector2(xInput * player.playerData.GrappleSwingSpeed, 0));
-
-
         if (player.inputHandler.HoldingUp)
         {
             player.dj.distance -= playerData.GrappleReelSpeed * Time.deltaTime;
         }
+
+        if (player.transform.position.y >= graple.transform.position.y + playerData.GrappleYTolarance) return; //can still pull closer if above point but not move further/L+R
+
         if (player.inputHandler.HoldingDown)
         {
             if (player.dj.distance > playerData.GrappleDistance)
                 return;
             player.dj.distance += playerData.GrappleReelSpeed * Time.deltaTime;
         }
+
+        player.rb.AddForce(new Vector2(xInput * player.playerData.GrappleSwingSpeed, 0));
+
+        
+        
 
     }
 

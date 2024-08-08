@@ -70,13 +70,13 @@ public class PlayerData : ScriptableObject
     public bool DebugAbilitySwitching;
 
     [Space]
-    [Header("Grapple Stuff")]
+    [Header("Basic Grapple")]
     public Sprite GrapplePointSprite;
-    [Tooltip("Uncheck Ground if you dont want player to be able to grapple to the ground")]
     public LayerMask LaymaskGrapple;
     public float GrappleReelSpeed = 5f; //This gets weird at higher values need to firgure out why
     public float GrappleSwingSpeed = 20f;
     public float GrappleDistance = 25f;
+    public float GrappleYTolarance= 2.5f;
     [Space]
 
     [Header("Grapple Type 2")]
