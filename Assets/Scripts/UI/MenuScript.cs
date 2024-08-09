@@ -57,7 +57,7 @@ public class MenuScript : MonoBehaviour
 
     public void OpenSettings()
     {
-        Debug.Log("No, not yet");
+        SettingsMenu.instance.OpenSettingsMenu();
     }
 
     public void ExitGame()

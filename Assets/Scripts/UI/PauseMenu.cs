@@ -1,17 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] GameObject MenuHolder;
-    [SerializeField] GameObject[] EditorMenu;
+    public static PauseMenu instance;
 
-    bool isPaused;
+    private void Awake()
+    {   if (instance == null) instance = this; 
+        else Destroy(this);
+    }
+
+    [SerializeField] GameObject MenuHolder;
+    //[SerializeField] GameObject[] EditorMenu;
+
+    public bool isPaused;
 
     [SerializeField] UnityEvent Paused;
     [SerializeField] UnityEvent UnPaused;
@@ -42,17 +46,24 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Additive);
     }
 
+    public void OpenSettings()
+    {
+        SettingsMenu.instance.OpenSettingsMenu();
+    }
+
 
     void PauseStuff()
     {
         if(isPaused)
         {
+            if (SettingsMenu.instance.inSettings) return;
+
             UnPaused.Invoke();
             isPaused = false;
             Time.timeScale = 1.0f;
             MenuHolder.SetActive(false);
-            foreach(GameObject edit in EditorMenu)
-                edit.SetActive(false);
+            /*foreach(GameObject edit in EditorMenu)
+                edit.SetActive(false);*/
         }
         else if(!isPaused)
         {
@@ -60,12 +71,12 @@ public class PauseMenu : MonoBehaviour
             isPaused = true;
             Time.timeScale = 0.0f;
             MenuHolder.SetActive(true);
-
+            /*
             if(DataStorage.Instance.isEditing)
             {
                 foreach (GameObject edit in EditorMenu)
                     edit.SetActive(true);
-            }
+            }*/
         }
     }
 

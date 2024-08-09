@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
-using UnityEngine.Animations;
 
 namespace LevelEditor
 {
@@ -23,12 +22,15 @@ namespace LevelEditor
 
        public void OnDrag(InputAction.CallbackContext context)
        {
+            if(PauseMenu.instance.isPaused) return;
+
             if (context.started) origin = GetMousePos;
             _isDragging = context.started || context.performed;
        }
 
         public void OnZoomIn(InputAction.CallbackContext context)
         {
+            if (PauseMenu.instance.isPaused) return;
             Debug.Log("Zooming In?");
             if (context.started)
             {
@@ -41,6 +43,7 @@ namespace LevelEditor
 
         public void OnZoomOut(InputAction.CallbackContext context) 
         {
+            if (PauseMenu.instance.isPaused) return;
             if (context.started)
             {
                 camZoomLevel -= ZoomSens;
@@ -53,6 +56,7 @@ namespace LevelEditor
 
         private void LateUpdate()
         {
+            if (PauseMenu.instance.isPaused) return;
             if (!_isDragging) return;
 
             diff = GetMousePos - transform.position;
