@@ -14,8 +14,14 @@ public class SettingsMenu : MonoBehaviour
     private GameObject FullSettingsMenu;
     [SerializeField]
     GameObject[] Menus;
+    [SerializeField] GameObject editorButtn;
 
-    public void OpenSettingsMenu() { 
+
+    public void OpenSettingsMenu() {
+        if (!DataStorage.Instance.isEditing)
+             editorButtn.SetActive(false);
+        else editorButtn.SetActive(true);
+
         inSettings = true;
         FullSettingsMenu.SetActive(true); 
     }

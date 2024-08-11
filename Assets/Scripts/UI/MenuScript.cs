@@ -20,7 +20,10 @@ public class MenuScript : MonoBehaviour
         if (!SceneManager.GetSceneByName("AlwaysActive").isLoaded)
             SceneManager.LoadSceneAsync("AlwaysActive",LoadSceneMode.Additive);
     }
-
+    private void Start()
+    {
+        DataStorage.Instance.isEditing = true;
+    }
 
     public void SelectLevel(string levelId)
     {
@@ -67,6 +70,7 @@ public class MenuScript : MonoBehaviour
 
     public void BackToMain()
     {
+        DataStorage.Instance.isEditing = true;
         LevelSelectScreen.SetActive(false);
         MainMenuScreen.SetActive(true);
     }
