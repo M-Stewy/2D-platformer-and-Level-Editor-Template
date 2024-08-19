@@ -6,11 +6,15 @@ using UnityEngine.InputSystem;
 using TMPro;
 using System;
 using UnityEngine.EventSystems;
+using UnityEditor;
+using System.ComponentModel;
 
 namespace LevelEditor { 
     public class LevelEditorLoadAndSave : MonoBehaviour
     {
         [SerializeField] public bool LoadOnly;
+
+        GameObject Grid;
 
         public static LevelEditorLoadAndSave Instance;
         private void Awake()
@@ -18,9 +22,13 @@ namespace LevelEditor {
             if (Instance == null) Instance = this;
             else Destroy(this);
 
+            Grid = GameObject.FindGameObjectWithTag("GridHolder");
+            GenTileScritList();
+            GenTileMapList();
+
             foreach (Tilemap tilemap in tilemaps)
             {
-                foreach (TileMaps num in System.Enum.GetValues(typeof(TileMaps)))
+                foreach (TileMaps num in Enum.GetValues(typeof(TileMaps)))
                 {
                     if (tilemap.name == num.ToString())
                     {
@@ -28,6 +36,7 @@ namespace LevelEditor {
                     }
                 }
             }
+
             if (DataStorage.Instance != null)
                 foreach (string str in Directory.GetFiles(Application.dataPath + "/SaveFileFolder", "*.json"))
                 {
@@ -41,6 +50,7 @@ namespace LevelEditor {
                 }
             else
                 LoadLevel();
+
         }
         char[] chars = { '.', 'j', 's', 'o', 'n' };
         public List<CustomTileScritObj> tileScritList = new List<CustomTileScritObj>();
@@ -51,6 +61,28 @@ namespace LevelEditor {
         [SerializeField] TMP_InputField saveFileNameInput;
 
         
+        private void GenTileScritList()
+        {
+            string[] fileNames = AssetDatabase.FindAssets("Tile", new[] { "Assets/Scripts/Level Editor Stuff/CustomTileScritObjs" });
+            Debug.Log(fileNames.Length);
+
+            foreach (string file in fileNames)
+            {
+                Debug.Log("Found asset: " + file);
+                var path = AssetDatabase.GUIDToAssetPath(file);
+                var tile = AssetDatabase.LoadAssetAtPath<CustomTileScritObj>(path);
+                tileScritList.Add(tile);
+            }
+        }
+
+        private void GenTileMapList()
+        {
+            foreach(var tilemap in Grid.GetComponentsInChildren<Tilemap>())
+            {
+                tilemaps.Add(tilemap);
+            }
+
+        }
 
         public enum TileMaps //These need to the exact same name as the ones in the scene view
         {

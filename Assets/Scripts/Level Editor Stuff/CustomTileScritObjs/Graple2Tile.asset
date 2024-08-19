@@ -17,4 +17,4 @@ MonoBehaviour:
   image: {fileID: -289463247, guid: c2789ff3a20e4204c87119228914ba34, type: 3}
   tilemap: 22
   drawCategory: -20
-  numID: 2
+  numID: 4

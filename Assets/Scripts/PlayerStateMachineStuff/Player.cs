@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
         groundedState = new PlayerGroundedState(this, playerData, PSM, "null");
         useAbilityState = new PlayerUseAbilityState(this, playerData, PSM, "null");
 
-        idleState = new PlayerIdleState(this, playerData, PSM, "isIdle");
+        idleState = new PlayerIdleState(this, playerData, PSM, "IsIdle");
         movingState = new PlayerMovingState(this, playerData, PSM, "IsWalking");
         jumpState = new PlayerJumpState(this, playerData, PSM, "JumpStart");
         crouchIdleState = new PlayerCrouchIdleState(this, playerData, PSM, "IsCrouchingAnim");
