@@ -15,7 +15,7 @@ MonoBehaviour:
   isFacingRight: 0
   GroundLayer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 328
   health: 2
   maxHealth: 1
   immuneFrameTime: 160
@@ -56,7 +56,7 @@ MonoBehaviour:
   Grap2MaxSpeed: 75
   LaymaskInverGrapp:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 256
   InverGrapSpeed: 66
   InverGrapDis: 10
   InverMaxDis: 15

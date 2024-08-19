@@ -60,6 +60,7 @@ namespace LevelEditor {
             BadTile = 15,
             Grapple1 = 20,
             Grapple2 = 22,
+            AntiGrapp = 23,
             RespawnTile = 100
 
         }
