@@ -118,6 +118,20 @@ public class PlayerInputHandler : MonoBehaviour
         else
             HoldingAbility1 = false;
     }
+
+    public void OnAbiltyMenu(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            Debug.Log("Pressed RC");
+        if (FindAnyObjectByType<AbilHSMenuUI>() != null) //probably should do this a better way later...
+        {
+            AbilHSMenuUI Menu = FindAnyObjectByType<AbilHSMenuUI>();
+            if (context.started)
+                Menu.OpenMenu();
+            if (context.canceled)
+                Menu.CloseMenu();
+        }
+    }
     private IEnumerator StopPress()
     {
         yield return new WaitForEndOfFrame();

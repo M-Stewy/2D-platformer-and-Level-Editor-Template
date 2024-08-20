@@ -529,7 +529,44 @@ public class Player : MonoBehaviour
         GameObject.FindWithTag("Player").GetComponent<Player>().playerData.health = GameObject.FindWithTag("Player").GetComponent<Player>().playerData.health + 1;
     }
 
-       
+       public void HotSwapAbilty(string abilName) 
+       {
+        if (AllAbilities == null) return;
+        if (!playerData.AllAbilitiesUnlocked) return;// right now this only works with all abilities unlocked, will probably change later to depend on unlocks
+
+        switch (abilName)
+        {
+            case "Grapple1":
+                CurrentAbility = GrappleAbility;
+                abilityIterator = AviableAbilities.IndexOf(GrappleAbility);
+                break;
+            case "Grapple2":
+                CurrentAbility = Grapple2Ability;
+                abilityIterator = AviableAbilities.IndexOf(Grapple2Ability);
+                break;
+            case "AntiGrapple":
+                CurrentAbility = GrappleInverse;
+                abilityIterator = AviableAbilities.IndexOf(GrappleInverse);
+                break;
+            case "TODO":
+                Debug.Log("Abilty 4 does not exist yet :(");
+                abilityIterator = 0;
+                break;
+            case "TODOTOO":
+                Debug.Log("Ability 5 doesnt exist >:( ");
+                abilityIterator = 0;
+                break;
+            case "None":
+                CurrentAbility = NoAbility;
+                abilityIterator = 0;
+                break;
+            default:
+                CurrentAbility = NoAbility;
+                abilityIterator = 0;
+                break;
+        }
+
+       }
 
         public void AbilityUnlock(string abilityName)
         {
