@@ -20,7 +20,7 @@ public class GrappleInvertedState : GenericGrappleState
         startGrap = false;
         base.Enter();
 
-        ShootSwingPoint(GrapHitted, playerData.InverGrapDis, playerData.LaymaskInverGrapp, false);
+        ShootSwingPoint(playerData.InverGrapDis, playerData.LaymaskInverGrapp, false);
     }
 
     public override void Exit()
@@ -55,8 +55,8 @@ public class GrappleInvertedState : GenericGrappleState
     }
 
 
-    public override void ShootSwingPoint(LayerMask GrapHitLay, float thisGrapDist, LayerMask thisGrapLayer, bool useDJ)
+    public override void ShootSwingPoint(float thisGrapDist, LayerMask thisGrapLayer, bool useDJ)
     {
-        base.ShootSwingPoint(GrapHitLay, thisGrapDist, thisGrapLayer, useDJ);
+        base.ShootSwingPoint(thisGrapDist, thisGrapLayer, useDJ);
     }
 }

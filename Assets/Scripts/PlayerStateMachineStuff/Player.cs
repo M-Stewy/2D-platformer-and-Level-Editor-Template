@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 /// <summary>
-/// Made by Stewy
-/// 
 /// This is the main player controller script
 /// it uses a state machine to swap between the different states of movement
 /// 
@@ -32,7 +31,9 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public PlayerAbility Grapple2Ability;
     [HideInInspector]
-    public PlayerAbility GrappleInverse;
+    public PlayerAbility GrappleInverseAbility;
+    [HideInInspector]
+    public PlayerAbility GrappleDynamAbility;
 
 
     //These are all the state scripts that the player can switch between
@@ -55,6 +56,7 @@ public class Player : MonoBehaviour
     public BasicSwingGrappleState grappleBState { get; private set; }
     public Grapple2PointState grapple2State { get; private set; }
     public GrappleInvertedState inverseGrapple { get; private set; }
+    public GrappleDynamicSwingState dynamicGrapple { get; private set; }
 
 
     public PlayerInputHandler inputHandler { get; private set; }
@@ -74,6 +76,8 @@ public class Player : MonoBehaviour
     public GameObject hand;
     [HideInInspector]
     public LineRenderer lr;
+    [HideInInspector]
+    public HingeJoint2D hj;
 
     [HideInInspector]
     public AudioSource audioS;
@@ -128,11 +132,14 @@ public class Player : MonoBehaviour
         grappleBState = new BasicSwingGrappleState(this, playerData, PSM, "IsGrapplingAnim");
         grapple2State = new Grapple2PointState(this,playerData, PSM, "IsGrapplingAnim"); //replace anims if you want abilties to look different
         inverseGrapple = new GrappleInvertedState(this, playerData, PSM, "IsGrapplingAnim");
+        dynamicGrapple = new GrappleDynamicSwingState(this, playerData, PSM, "IsGrapplingAnim");
+
 
         inputHandler = GetComponent<PlayerInputHandler>();
         rb = GetComponent<Rigidbody2D>();
         cc = GetComponent<CapsuleCollider2D>();
         dj = GetComponent<DistanceJoint2D>();
+        hj = GetComponent<HingeJoint2D>();
         anim = GetComponent<Animator>();
         audioS = GetComponent<AudioSource>();
 
@@ -146,12 +153,15 @@ public class Player : MonoBehaviour
         GrappleAbility = new PlayerAbility(false, false, "Grappling", "HoldingGrapple", "ShootGrapple");
     //    GunAbility = new PlayerAbility(false, false, "Gun", "HoldingGun", "ShootGun");
         Grapple2Ability = new PlayerAbility(false, false, "Grapple2", "HoldingGrapple", "ShootGrapple"); //Probably changes these to have unique anims later
-        GrappleInverse = new PlayerAbility(false, false, "InverseGrapple", "HoldingGrapple", "ShootGrapple");
+        GrappleInverseAbility = new PlayerAbility(false, false, "InverseGrapple", "HoldingGrapple", "ShootGrapple");
+        GrappleDynamAbility = new PlayerAbility(false, false, "DyanmicGrapple", "HoldingGrapple", "ShootGrapple");
 
-        AllAbilities.Add(NoAbility);
+        //foreach(PlayerAbility pa in FindObjectsByType<PlayerAbility>(0)) I feel like theres a way to make this work but I dont know how yet..
+        AllAbilities.Add(NoAbility); //there is probably a better way to do this
         AllAbilities.Add(GrappleAbility);
         AllAbilities.Add(Grapple2Ability);
-        AllAbilities.Add(GrappleInverse);
+        AllAbilities.Add(GrappleInverseAbility);
+        AllAbilities.Add(GrappleDynamAbility);
         //AllAbilities.Add(SlowFallAbility);
 
         respawnPoint = transform;
@@ -545,16 +555,17 @@ public class Player : MonoBehaviour
                 abilityIterator = AviableAbilities.IndexOf(Grapple2Ability);
                 break;
             case "AntiGrapple":
-                CurrentAbility = GrappleInverse;
-                abilityIterator = AviableAbilities.IndexOf(GrappleInverse);
+                CurrentAbility = GrappleInverseAbility;
+                abilityIterator = AviableAbilities.IndexOf(GrappleInverseAbility);
                 break;
             case "TODO":
                 Debug.Log("Abilty 4 does not exist yet :(");
                 abilityIterator = 0;
                 break;
             case "TODOTOO":
-                Debug.Log("Ability 5 doesnt exist >:( ");
-                abilityIterator = 0;
+                Debug.Log("Ability 5 IS REAL :O ");
+                CurrentAbility = GrappleDynamAbility;
+                abilityIterator = AviableAbilities.IndexOf(GrappleDynamAbility);
                 break;
             case "None":
                 CurrentAbility = NoAbility;
@@ -580,6 +591,12 @@ public class Player : MonoBehaviour
                     break;
                 case "Graple2":
                     Grapple2Ability.SetUnlocked(true);
+                    break;
+                case "InvereseGrapple":
+                    GrappleInverseAbility.SetUnlocked(true);
+                    break;
+                case "GrappleDynamAbility":
+                    GrappleDynamAbility.SetUnlocked(true);
                     break;
             //    case "Gun":
             //        GunAbility.SetUnlocked(true);

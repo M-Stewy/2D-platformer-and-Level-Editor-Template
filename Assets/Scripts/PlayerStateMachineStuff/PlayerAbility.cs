@@ -1,11 +1,9 @@
 using UnityEngine;
 /// <summary>
-/// Made by Stewy
-/// 
 /// a class to store the different player abilities
 /// used to change the sprite/ check aviablity of the different abilities
 /// </summary>
-public class PlayerAbility
+public struct PlayerAbility
 {
     public bool isUnlocked { get; private set; }
     public bool isEquiped { get; private set; }

@@ -53,6 +53,8 @@ public class PlayerData : ScriptableObject
     public float SlideDrag = 0.001f;
     public float IdleDrag = 5f;
     public float SlowFallDrag = 3;
+    public float DynamGrappPDrag = 2.5f;
+    
 
     [Space]
     [Header("Gravity Values")]
@@ -60,6 +62,7 @@ public class PlayerData : ScriptableObject
     public float SlopeGravity = 3f;
     public float AirGravity = 5f;
     public float SlowFallGravity;
+    public float DynamGrappePGrav = 10;
 
     [Space(5)]
 
@@ -93,6 +96,15 @@ public class PlayerData : ScriptableObject
     public float InverGrapDis;
     public float InverMaxDis;
 
+    [Space]
+    [Header("Dynamic Grapple (RopePhysics")]
+    public LayerMask LaymaskDynamGrapple;
+    public float DynamGrappleSpeed;
+    public float DynamGrappleDis;
+    public float DynamGrappleMaxSpeed;
+    public float DynamGrappleRopeGrav;
+    public float DynamGrappleRopeMass;
+    public float DynamGrappleRopeDrag;
 
     [Space(16)]
     [Header("AudioFiles")]

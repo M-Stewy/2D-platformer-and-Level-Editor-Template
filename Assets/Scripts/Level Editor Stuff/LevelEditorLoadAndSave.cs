@@ -5,9 +5,7 @@ using System.IO;
 using UnityEngine.InputSystem;
 using TMPro;
 using System;
-using UnityEngine.EventSystems;
 using UnityEditor;
-using System.ComponentModel;
 
 namespace LevelEditor { 
     public class LevelEditorLoadAndSave : MonoBehaviour
@@ -237,13 +235,13 @@ namespace LevelEditor {
 
 
 
-    [System.Serializable]
+    [Serializable]
     public class LevelData
     {
         public List<LayerData> layers = new List<LayerData>();
     }
 
-    [System.Serializable]
+    [Serializable]
     public class LayerData
     {
         public int layer_id;

@@ -262,7 +262,7 @@
                 {
                     "name": "",
                     "id": "becfb77b-0828-4c81-a598-4a0acf54f7fe",
-                    "path": "<Keyboard>/tab",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",

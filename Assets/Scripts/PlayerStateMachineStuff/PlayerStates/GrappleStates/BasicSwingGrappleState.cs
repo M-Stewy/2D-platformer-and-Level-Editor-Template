@@ -8,8 +8,6 @@ public class BasicSwingGrappleState : GenericGrappleState
 
     float xInput;
 
-    LayerMask GrapHitted;
-
     public override void Checks()
     {
         base.Checks();
@@ -22,7 +20,7 @@ public class BasicSwingGrappleState : GenericGrappleState
         missedGrap = false;
         base.Enter();
         player.CurrentAbility.DoAction(player.hand.gameObject, true);
-        ShootSwingPoint(GrapHitted, playerData.GrappleDistance, playerData.LaymaskGrapple, true);
+        ShootSwingPoint(playerData.GrappleDistance, playerData.LaymaskGrapple, true);
         //    GrapHitAble = playerData.LaymaskGrapple;
         Debug.Log(missedGrap);
         //Debug.Log("GrapHit is currently: " + playerData.LaymaskGrapple.value);
@@ -88,9 +86,9 @@ public class BasicSwingGrappleState : GenericGrappleState
         }
     }
 
-    public override void ShootSwingPoint(LayerMask GrapHitLay, float thisGrapDist, LayerMask thisGrapLayer, bool useDJ)
+    public override void ShootSwingPoint(float thisGrapDist, LayerMask thisGrapLayer, bool useDJ)
     {
-        base.ShootSwingPoint(GrapHitLay, thisGrapDist, thisGrapLayer, useDJ);
+        base.ShootSwingPoint(thisGrapDist, thisGrapLayer, useDJ);
 
     }
 

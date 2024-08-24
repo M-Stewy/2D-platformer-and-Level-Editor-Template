@@ -36,8 +36,11 @@ public class PlayerUseAbilityState : PlayerState
             case "InverseGrapple":
                playerStateMachine.ChangeState(player.inverseGrapple);
                break;
+            case "DyanmicGrapple":
+                playerStateMachine.ChangeState(player.dynamicGrapple);
+                break;
             default:
-                Debug.Log("This should not be Printing");
+                Debug.Log("This should not be Printing >:(");
                 playerStateMachine.ChangeState(player.idleState);
                 break;
         }

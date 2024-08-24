@@ -7,9 +7,12 @@ public class GenericGrappleState : PlayerState
     }
     protected GameObject graple;
     Vector2 direction;
+    LayerMask GrapHitLay;
 
     protected bool missedGrap;
     protected bool startGrap;
+
+    protected bool stopGrap;
     public override void Checks()
     {
         base.Checks();
@@ -18,6 +21,7 @@ public class GenericGrappleState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        stopGrap = false;
     }
 
     public override void Exit()
@@ -52,7 +56,7 @@ public class GenericGrappleState : PlayerState
         }
     }
 
-    public virtual void ShootSwingPoint(LayerMask GrapHitLay,float thisGrapDist,LayerMask thisGrapLayer, bool useDJ)
+    public virtual void ShootSwingPoint(float thisGrapDist,LayerMask thisGrapLayer, bool useDJ)
     {
         player.AbiltySoundEffect(playerData.ShootGrappleSFX);
         direction = player.inputHandler.mouseScreenPos - player.transform.position;
@@ -82,6 +86,13 @@ public class GenericGrappleState : PlayerState
             player.AbiltySoundEffect(playerData.MissGrappleSFX);
         }
 
+    }
+    public virtual void ShootSwingPoint(bool Custom)
+    {
+        if (!Custom)
+        {
+            Debug.Log("Should not be printing :( ");
+        }
     }
 
     public virtual void CreateGrapPoint(Vector2 point, Transform parentOBJ, bool useDJ)
@@ -116,6 +127,7 @@ public class GenericGrappleState : PlayerState
 
     public virtual void ConnectPlayerToPoint(GameObject point, bool useDJ)
     {
+        if (stopGrap) return;
         if (GameObject.FindGameObjectWithTag("GraplePoint"))
         {
             if(useDJ)
