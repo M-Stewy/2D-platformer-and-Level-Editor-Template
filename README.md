@@ -31,6 +31,7 @@ to make a new tile for the level editor just:  <br />
 <br />
 <br />
 <br />
+I will probably be contining to add more to this but only really when I have the time.
 
 Some code used from:  
 https://www.youtube.com/watch?v=qXbjyzBlduY  
