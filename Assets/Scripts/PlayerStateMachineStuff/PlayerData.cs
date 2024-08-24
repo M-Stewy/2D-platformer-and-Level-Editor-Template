@@ -23,8 +23,9 @@ public class PlayerData : ScriptableObject
     [Tooltip("Ground Layer(any layers you want the player to be able to jump on)")]
     public LayerMask GroundLayer;
 
+    //Unused
     [Space(5)]
-    [Header("Health Stuff")]
+    [Header("Health Stuff (Unused)")]
     public float health;
     public float maxHealth = 1;
     public float immuneFrameTime = 160;
@@ -95,6 +96,13 @@ public class PlayerData : ScriptableObject
     public float InverGrapSpeed;
     public float InverGrapDis;
     public float InverMaxDis;
+
+    [Space]
+    [Header("Spring Grapple")]
+    public LayerMask LaymaskSpringGrapple;
+    public float SpringGrapSpeed;
+    public float SpringGrapDis;
+    [Range(0,500)]public float SpringBreakF;
 
     [Space]
     [Header("Dynamic Grapple (RopePhysics")]

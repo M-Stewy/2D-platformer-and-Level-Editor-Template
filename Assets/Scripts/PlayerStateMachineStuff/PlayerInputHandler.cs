@@ -121,8 +121,6 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnAbiltyMenu(InputAction.CallbackContext context)
     {
-        if (context.started)
-            Debug.Log("Pressed RC");
         if (FindAnyObjectByType<AbilHSMenuUI>() != null) //probably should do this a better way later...
         {
             AbilHSMenuUI Menu = FindAnyObjectByType<AbilHSMenuUI>();

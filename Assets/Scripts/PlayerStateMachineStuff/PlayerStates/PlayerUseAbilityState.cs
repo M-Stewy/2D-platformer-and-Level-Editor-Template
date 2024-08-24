@@ -36,6 +36,9 @@ public class PlayerUseAbilityState : PlayerState
             case "InverseGrapple":
                playerStateMachine.ChangeState(player.inverseGrapple);
                break;
+            case "SpringGrapple":
+                playerStateMachine.ChangeState(player.springGrapple);
+                break;
             case "DyanmicGrapple":
                 playerStateMachine.ChangeState(player.dynamicGrapple);
                 break;

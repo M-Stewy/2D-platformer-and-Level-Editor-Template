@@ -22,7 +22,7 @@ public class BasicSwingGrappleState : GenericGrappleState
         player.CurrentAbility.DoAction(player.hand.gameObject, true);
         ShootSwingPoint(playerData.GrappleDistance, playerData.LaymaskGrapple, true);
         //    GrapHitAble = playerData.LaymaskGrapple;
-        Debug.Log(missedGrap);
+        //Debug.Log(missedGrap);
         //Debug.Log("GrapHit is currently: " + playerData.LaymaskGrapple.value);
         //Debug.Log("GroundLayer is currently: " + playerData.GroundLayer.value);
     }
@@ -39,7 +39,7 @@ public class BasicSwingGrappleState : GenericGrappleState
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-
+        if (!graple) return;
         if (player.inputHandler.HoldingUp)
         {
             player.dj.distance -= playerData.GrappleReelSpeed * Time.deltaTime;
@@ -64,13 +64,13 @@ public class BasicSwingGrappleState : GenericGrappleState
     public override void Update()
     {
         base.Update();
+        
 
-        if (graple)
-        {
-            player.dj.connectedAnchor = graple.transform.position;
-            player.lr.SetPosition(1, graple.transform.position);
-        }
+        if (!graple) return;
 
+        base.SnapRope(playerData.GrappleDistance);
+        player.dj.connectedAnchor = graple.transform.position;
+        player.lr.SetPosition(1, graple.transform.position);
         player.lr.SetPosition(0, player.hand.transform.position);
 
         if (player.rb.velocity.magnitude > 15 || player.rb.velocity.magnitude < -15)
@@ -84,6 +84,7 @@ public class BasicSwingGrappleState : GenericGrappleState
         {
             player.StopAudioFile(playerData.AirWooshSFX);
         }
+        
     }
 
     public override void ShootSwingPoint(float thisGrapDist, LayerMask thisGrapLayer, bool useDJ)

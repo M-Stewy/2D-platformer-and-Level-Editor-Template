@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+
 
 public class GenericGrappleState : PlayerState
 {
@@ -13,6 +15,7 @@ public class GenericGrappleState : PlayerState
     protected bool startGrap;
 
     protected bool stopGrap;
+    int breakCounter = 0;
     public override void Checks()
     {
         base.Checks();
@@ -33,6 +36,17 @@ public class GenericGrappleState : PlayerState
     public override void FixedUpdate()
     {
         base.FixedUpdate();
+        if (canBreak)
+        {
+            Debug.Log(breakCounter);
+            breakCounter += 1;
+            if (breakCounter > 15)
+            {
+                DestoryGrapPoints();
+                canBreak = false;
+            }
+        }
+        else breakCounter = 0;
     }
 
     public override void Update()
@@ -54,6 +68,8 @@ public class GenericGrappleState : PlayerState
         {
             playerStateMachine.ChangeState(player.inAirState);
         }
+
+        
     }
 
     public virtual void ShootSwingPoint(float thisGrapDist,LayerMask thisGrapLayer, bool useDJ)
@@ -87,13 +103,6 @@ public class GenericGrappleState : PlayerState
         }
 
     }
-    public virtual void ShootSwingPoint(bool Custom)
-    {
-        if (!Custom)
-        {
-            Debug.Log("Should not be printing :( ");
-        }
-    }
 
     public virtual void CreateGrapPoint(Vector2 point, Transform parentOBJ, bool useDJ)
     {
@@ -107,6 +116,8 @@ public class GenericGrappleState : PlayerState
         graple.AddComponent<CircleCollider2D>();
         graple.GetComponent<CircleCollider2D>().isTrigger = true;
         graple.GetComponent<CircleCollider2D>().radius = .5f;
+        int LayerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
+        graple.layer = LayerIgnoreRaycast;
         graple.transform.position = point;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         graple.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -146,5 +157,20 @@ public class GenericGrappleState : PlayerState
             player.lr.enabled = false;
         }
     }
+    bool canBreak;
+    public virtual void SnapRope(float thisGrapDist)
+    {
+        Debug.Log("Checking for snap?");
+        Vector3 dir = -(graple.transform.position - player.transform.position);
+        RaycastHit2D rayHit = Physics2D.Raycast(graple.transform.position + dir * 0.1f, dir, thisGrapDist);
+        Debug.DrawRay(graple.transform.position + dir * 0.1f, dir * thisGrapDist, Color.blue, 0.5f);
+        if(rayHit == true)
+        if (!rayHit.collider.transform.CompareTag("Player"))
+        {
+            Debug.Log("Why no work?");
+                canBreak = true;
+        } else canBreak = false;
+    }
 
+    
 }

@@ -45,11 +45,6 @@ public class GrappleDynamicSwingState : GenericGrappleState
 
     }
 
-    public override void ShootSwingPoint(bool Custom = true)
-    {
-        Debug.Log("Entered Dynamic Swing State");
-        DestoryGrapPoints();
-    }
     public override void ShootSwingPoint(float thisGrapDist, LayerMask thisGrapLayer, bool useDJ)
     {
         base.ShootSwingPoint(thisGrapDist, thisGrapLayer, useDJ);
