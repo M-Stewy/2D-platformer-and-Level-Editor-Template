@@ -21,10 +21,6 @@ public class BasicSwingGrappleState : GenericGrappleState
         base.Enter();
         player.CurrentAbility.DoAction(player.hand.gameObject, true);
         ShootSwingPoint(playerData.GrappleDistance, playerData.LaymaskGrapple, true);
-        //    GrapHitAble = playerData.LaymaskGrapple;
-        //Debug.Log(missedGrap);
-        //Debug.Log("GrapHit is currently: " + playerData.LaymaskGrapple.value);
-        //Debug.Log("GroundLayer is currently: " + playerData.GroundLayer.value);
     }
 
     public override void Exit()
@@ -55,10 +51,6 @@ public class BasicSwingGrappleState : GenericGrappleState
         }
 
         player.rb.AddForce(new Vector2(xInput * player.playerData.GrappleSwingSpeed, 0));
-
-        
-        
-
     }
 
     public override void Update()
@@ -93,7 +85,4 @@ public class BasicSwingGrappleState : GenericGrappleState
 
     }
 
-    
-
-    
 }

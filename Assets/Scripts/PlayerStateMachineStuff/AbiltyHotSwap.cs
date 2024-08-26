@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+/// <summary>
+/// for use with a UI element to help easily select a specific ability
+/// </summary>
 public class AbiltyHotSwap : MonoBehaviour
 {
     [SerializeField] string AbilName;

@@ -1,5 +1,7 @@
 using UnityEngine;
-
+/// <summary>
+/// self explanitory I would think
+/// </summary>
 public class RespawnPlayerScript : MonoBehaviour
 {
     

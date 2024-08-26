@@ -1,7 +1,5 @@
 using UnityEngine;
 /// <summary>
-/// Made by Stewy
-/// 
 /// This is the "template" State of the player statemachine
 /// This state is only used to create the other states
 /// The PlayerState is simply a C# class that:

@@ -1,6 +1,4 @@
 /// <summary>
-/// Made by Stewy
-/// 
 /// This handles the switching of the different states for the player
 /// It is able to do this as all the states inherit from the PlayerState class 
 ///   so they all can be used in this scripts currentState variable

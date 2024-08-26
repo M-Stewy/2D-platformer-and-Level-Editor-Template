@@ -1,7 +1,5 @@
 using UnityEngine;
 /// <summary>
-/// Made by Stewy
-/// 
 /// This is a parent state(I dont think thats the technically name for it but yea) 
 /// for all the states that take place on the ground
 /// all of the logic in this state is also being called in any of those states

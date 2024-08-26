@@ -1,5 +1,7 @@
 using UnityEngine;
-
+/// <summary>
+/// A graple state which has springy physics causing the player to bounce around while swinging
+/// </summary>
 public class GrappleSpringState : GenericGrappleState
 {
     public GrappleSpringState(Player player, PlayerData playerData, PlayerStateMachine playerStateMachine, string playerAnim) : base(player, playerData, playerStateMachine, playerAnim)
@@ -11,8 +13,6 @@ public class GrappleSpringState : GenericGrappleState
         base.Checks();
         xInput = player.inputHandler.moveDir.x;
     }
-
-  
 
     public override void Enter()
     {

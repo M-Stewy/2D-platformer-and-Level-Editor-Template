@@ -1,6 +1,4 @@
 /// <summary>
-/// Made by Stewy
-/// 
 /// This State lowers the collider of the player to be smaller so it can fit into smaller gaps
 /// and makes the player move at a slower pace than usual
 /// </summary>

@@ -1,6 +1,4 @@
 /// <summary>
-/// Made by Stewy
-/// 
 /// This is the state that is active when the player is
 /// on the ground and not giving any input
 /// it sets the drag value of the rigidbody to be high to force the player to come to a stop when no x=axis inputs are inputed

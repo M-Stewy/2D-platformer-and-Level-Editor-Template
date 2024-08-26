@@ -1,5 +1,8 @@
 using UnityEngine;
-
+/// <summary>
+/// Ensures that the visible grid in the editor stays allinged
+///     *Needs work, might replace with a shader or something later
+/// </summary>
 public class GridStablizer : MonoBehaviour
 {
     float xPos;

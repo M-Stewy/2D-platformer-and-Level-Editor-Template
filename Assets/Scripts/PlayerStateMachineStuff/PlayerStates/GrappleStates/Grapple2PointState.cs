@@ -1,4 +1,7 @@
 using UnityEngine;
+/// <summary>
+/// Simply pulls the player to the point they shot at, auto disconnects them once reached to keep momentum high
+/// </summary>
 public class Grapple2PointState : GenericGrappleState
 {
     public Grapple2PointState(Player player, PlayerData playerData, PlayerStateMachine playerStateMachine, string playerAnim) : base(player, playerData, playerStateMachine, playerAnim)

@@ -4,6 +4,10 @@ using UnityEngine.UI;
 
 namespace Settings
 {
+    /// <summary>
+    /// simply allows for controlling the volume via a slider in the menu
+    /// should only need the music and SFX channels I think but its easy to add more
+    /// </summary>
     public class AudioVolumeSliders : MonoBehaviour
     {
         [SerializeField] AudioMixerGroup mixerGroup;

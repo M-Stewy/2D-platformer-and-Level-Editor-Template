@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Instead of pulling towards a point, it pushes the player away
+/// </summary>
 public class GrappleInvertedState : GenericGrappleState
 {
     public GrappleInvertedState(Player player, PlayerData playerData, PlayerStateMachine playerStateMachine, string playerAnim) : base(player, playerData, playerStateMachine, playerAnim)

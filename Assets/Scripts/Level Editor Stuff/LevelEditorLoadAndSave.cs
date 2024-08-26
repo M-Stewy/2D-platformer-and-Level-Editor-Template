@@ -7,7 +7,13 @@ using TMPro;
 using System;
 using UnityEditor;
 
-namespace LevelEditor { 
+namespace LevelEditor {
+    /// <summary>
+    /// Probably the most important part of the project
+    /// if you want to add your own tiles, this script will need a bit of modification (not too much tho)
+    /// 
+    /// much of this script is from: https://www.youtube.com/watch?v=snUe2oa_iM0
+    /// </summary>
     public class LevelEditorLoadAndSave : MonoBehaviour
     {
         [SerializeField] public bool LoadOnly;
@@ -81,7 +87,9 @@ namespace LevelEditor {
             }
 
         }
-
+        /// <summary>
+        /// If you are adding custom tiles, make sure you add a corresponding enum to this
+        /// </summary>
         public enum TileMaps //These need to the exact same name as the ones in the scene view
         {
             FarBackground = -20,
@@ -94,7 +102,9 @@ namespace LevelEditor {
             RespawnTile = 100
 
         }
-
+        /// <summary>
+        /// This enum is unsued, but ideally it will help organize the tile buttons in the editor later
+        /// </summary>
         public enum Categories
         {
             Background = -20,

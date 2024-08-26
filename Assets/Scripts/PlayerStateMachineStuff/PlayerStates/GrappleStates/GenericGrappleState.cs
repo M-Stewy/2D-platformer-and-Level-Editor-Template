@@ -1,7 +1,8 @@
-using System.Collections;
 using UnityEngine;
 
-
+/// <summary>
+/// the GenericGrapple class is just a helper to make creating all the different types of grapple anilities easier
+/// </summary>
 public class GenericGrappleState : PlayerState
 {
     public GenericGrappleState(Player player, PlayerData playerData, PlayerStateMachine playerStateMachine, string playerAnim) : base(player, playerData, playerStateMachine, playerAnim)

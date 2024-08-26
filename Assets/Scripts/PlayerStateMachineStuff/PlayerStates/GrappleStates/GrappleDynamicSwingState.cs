@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
-using UnityEngine.Windows;
-
+/// <summary>
+/// A grapple abilty with "realisitic" rope physics, not sure how this is helpful but I wanted to make it so I did
+/// </summary>
 public class GrappleDynamicSwingState : GenericGrappleState
 {
     public GrappleDynamicSwingState(Player player, PlayerData playerData, PlayerStateMachine playerStateMachine, string playerAnim) : base(player, playerData, playerStateMachine, playerAnim)
@@ -109,7 +109,6 @@ public class GrappleDynamicSwingState : GenericGrappleState
         player.hj.enabled = true;
         player.hj.connectedBody = allJoints[PHDist-1];
         player.rb.AddForce(VStore,ForceMode2D.Impulse);
-        //player.rb.velocity = VStore;    
         Debug.Log(player.rb.velocity);
     }
 

@@ -4,6 +4,10 @@ using Cinemachine;
 
 namespace LevelEditor
 {
+    /// <summary>
+    /// Just controls the camera for the editor
+    /// uses mouse drag to pan the camera
+    /// </summary>
     public class LevelEditorCameraControls : MonoBehaviour
     {
 

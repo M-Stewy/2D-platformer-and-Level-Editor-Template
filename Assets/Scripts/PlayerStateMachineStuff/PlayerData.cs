@@ -1,16 +1,10 @@
-﻿using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
-/// Made by Stewy 
-///     Edited by: 
-///     
 ///  This Sript holds all the information about the player
 ///     such as their move speeds,  gravity values, current ability, health etc.
 ///  Because it is a scriptableObject it can be easily modified by other scripts without needing to
 ///     get refernces to the gameObject with the script and then the componet of the script itself
-///  
 /// </summary>
 
 [CreateAssetMenu(fileName = "newPlayerData", menuName = "Data/Player Data/Base Player Data")]
@@ -124,7 +118,6 @@ public class PlayerData : ScriptableObject
     public AudioClip SlideSFX;
     public AudioClip LandedSFX;
     public AudioClip HitSFX;
-    public AudioClip CrouchSFX;
     public AudioClip CrouchWalkSFX;
     public AudioClip AirWooshSFX;
 
@@ -141,8 +134,7 @@ public class PlayerData : ScriptableObject
 
     //[HideInInspector] 
     [Space]
-    [Header("DO NOT CHANGE THESE FROM DEFAULT, \n" +
-        "           (unless we change player size)")]
+    [Header(" Find the right values for the player sprite sizes (when crouching and when standing) and ensure they stay the same here")]
     public Vector2 CrouchOffset = new Vector2(-0.27f, -0.6f);
     //[HideInInspector]
     public Vector2 CrouchSize = new Vector2(0.85f, 0.65f);

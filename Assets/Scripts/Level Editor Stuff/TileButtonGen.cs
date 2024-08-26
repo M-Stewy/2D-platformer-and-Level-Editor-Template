@@ -1,11 +1,13 @@
 using LevelEditor;
-using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/// <summary>
+/// Automatically generates buttons for the level editor based off the tileScriptableObjects in the "CustomTileScritObjs" folder
+/// </summary>
 public class TileButtonGen : MonoBehaviour
 {
     [SerializeField] GameObject buttonPreFab;

@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
-
+/// <summary>
+/// a custom tile script for making a tile a spawn point for the player
+/// there might be better ways to do this, need to try some other things later
+/// </summary>
 public class SetRespawnPoints : MonoBehaviour
 {
     [SerializeField] Tilemap spawnPointMap;

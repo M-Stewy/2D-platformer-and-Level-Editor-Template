@@ -4,6 +4,9 @@ using UnityEngine.Tilemaps;
 
 namespace LevelEditor 
 { 
+    /// <summary>
+    /// The Base class of the level editor handles placement and deletion of the level editor
+    /// </summary>
     public class LevelEditorBase : MonoBehaviour
     {
         [SerializeField] Tilemap DefaultTileMap;

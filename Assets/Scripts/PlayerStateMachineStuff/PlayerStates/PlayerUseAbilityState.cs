@@ -1,11 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Made by Stewy
-///     Edited by:
-/// 
-/// Very unfinshed but serves as a foundation to how our ability system will (hopefull) work
-/// we need to dicuss this further I think
+/// the foundation to how the ability system works
 /// </summary>
 public class PlayerUseAbilityState : PlayerState
 {

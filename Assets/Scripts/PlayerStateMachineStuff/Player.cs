@@ -60,7 +60,6 @@ public class Player : MonoBehaviour
     public GrappleDynamicSwingState dynamicGrapple { get; private set; }
 
 
-
     public PlayerInputHandler inputHandler { get; private set; }
     [Header("Put custom player data here")]
     [Tooltip("holds all the data of the player like speed, health, and whatever")]
@@ -185,17 +184,12 @@ public class Player : MonoBehaviour
         }
         NoAbility.SetUnlocked(true);
         CurrentAbility = NoAbility;
-
-
     }
 
     
 
     private void Update()
     {
-        //if (FindObjectOfType<PauseMenu>().isPaused) return; // We will probably need to put this line in several scripts
-
-
         PSM.currentState.Update(); // this is calling the base unity Update method in the current state of the state machine
 
         isGrounded = IsGrounded();
@@ -206,11 +200,6 @@ public class Player : MonoBehaviour
         AbilityHandling();
 
         RotateHand();
-
-        if (inputHandler.PressedCrouch)
-        {
-            audioS.PlayOneShot(playerData.CrouchSFX); // this actaully does work it just sounds weird so I dont think we'll use it.
-        }
     }
 
     private void FixedUpdate()
@@ -218,7 +207,7 @@ public class Player : MonoBehaviour
         PSM.currentState.FixedUpdate(); // this is calling the base unity FixedUpdate method in the current state of the state machine
     }
 
-    //Logic for changing abilities yea
+
     #region AbilityStuff
     private void AbilityHandling()
     {
@@ -289,23 +278,12 @@ public class Player : MonoBehaviour
     #region Rotate and Ground Stuff
     private void RotateHand()
     {
-        /*if (CurrentAbility.name == SlowFallAbility.name)
-        {
-            if (inputHandler.moveDir.x == -1)
-            {
-                hand.transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
-            } else if (inputHandler.moveDir.x == 1)
-            {
-                hand.transform.rotation = Quaternion.AngleAxis(180, Vector3.forward);
-            }
-        }
-        else 
-        { */
-            //simply rotates the gun or whatever is being held so it lines up with player's aim
-            Vector3 AngleVector = inputHandler.mouseScreenPos - hand.transform.position;
-            float angle = Mathf.Atan2(AngleVector.y, AngleVector.x) * Mathf.Rad2Deg;
-            hand.transform.rotation = Quaternion.AngleAxis(angle + 180, Vector3.forward);
-        // }
+
+        //simply rotates the gun or whatever is being held so it lines up with player's aim
+        Vector3 AngleVector = inputHandler.mouseScreenPos - hand.transform.position;
+        float angle = Mathf.Atan2(AngleVector.y, AngleVector.x) * Mathf.Rad2Deg;
+        hand.transform.rotation = Quaternion.AngleAxis(angle + 180, Vector3.forward);
+       
     }
 
     private void FlipPlayer() // self explanitory
@@ -476,9 +454,10 @@ public class Player : MonoBehaviour
         
     }
 
-    #endregion
+    #endregion#region Events to be Called
 
-    //----------------- Events to be called ---------------------
+    #region Events to be Called
+
     [HideInInspector]
     public bool immuneFrames = false;
     public void recieveDamage()
@@ -601,9 +580,6 @@ public class Player : MonoBehaviour
                 case "GrappleDynamAbility":
                     GrappleDynamAbility.SetUnlocked(true);
                     break;
-            //    case "Gun":
-            //        GunAbility.SetUnlocked(true);
-            //        break;
             }
         }
 
@@ -626,4 +602,6 @@ public class Player : MonoBehaviour
             PSM.ChangeState(idleState);
             return new UnityAction(RespawnPlayerV);
         }
-    } 
+
+    #endregion
+}
