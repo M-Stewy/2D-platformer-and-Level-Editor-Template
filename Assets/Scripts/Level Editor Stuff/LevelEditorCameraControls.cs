@@ -35,7 +35,7 @@ namespace LevelEditor
         public void OnZoomIn(InputAction.CallbackContext context)
         {
             if (PauseMenu.instance.isPaused) return;
-            Debug.Log("Zooming In?");
+           //Debug.Log("Zooming In?");
             if (context.started)
             {
                 camZoomLevel += ZoomSens;
@@ -52,7 +52,7 @@ namespace LevelEditor
             {
                 camZoomLevel -= ZoomSens;
                 camZoomLevel = Mathf.Clamp(camZoomLevel, minCamZoom, maxCamZoom);
-                Debug.Log(camZoomLevel);
+             //   Debug.Log(camZoomLevel);
                 _mainCamVirtualCamera.m_Lens.OrthographicSize = camZoomLevel;
             }
         }

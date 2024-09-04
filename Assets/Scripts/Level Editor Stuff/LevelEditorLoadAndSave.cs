@@ -61,7 +61,7 @@ namespace LevelEditor {
         [SerializeField] List<Tilemap> tilemaps = new List<Tilemap>();
         public Dictionary<int,Tilemap> tilelayers = new Dictionary<int,Tilemap>();
 
-        string fileSaveName = "defaultSaveName";
+        string fileSaveName = "Default";
         [SerializeField] TMP_InputField saveFileNameInput;
 
         
@@ -99,7 +99,8 @@ namespace LevelEditor {
             Grapple1 = 20,
             Grapple2 = 22,
             AntiGrapp = 23,
-            RespawnTile = 100
+            RespawnTile = 100,
+            EndTile = 101
 
         }
         /// <summary>

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39ce006ff8eace540948d6d845620558, type: 3}
-  m_Name: FloorGeneralTile
+  m_Name: EndTile
   m_EditorClassIdentifier: 
-  id: FloorRule
-  tile: {fileID: 11400000, guid: d05cbc0b217d53047a04dd91b12ceae0, type: 2}
-  image: {fileID: 665385261, guid: 6d87bf0281d84ce4e8a63b96fff54fae, type: 3}
-  tilemap: 10
+  id: EndTile
+  tile: {fileID: 11400000, guid: 429328480deba2445954e91f3bda6313, type: 2}
+  image: {fileID: 21300000, guid: 4c3a5ea06ed855548ba4625c1868f5b2, type: 3}
+  tilemap: 101
   drawCategory: 0
-  numID: 3
+  numID: 2

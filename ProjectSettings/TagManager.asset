@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GraplePoint
   - GridHolder
+  - EndText
   layers:
   - Default
   - TransparentFX
