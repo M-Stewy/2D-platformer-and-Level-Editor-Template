@@ -55,7 +55,7 @@ public class GenericGrappleState : PlayerState
         base.Update();
         if (player.inputHandler.PressedJump)
         {
-            playerStateMachine.ChangeState(player.jumpState);
+            playerStateMachine.ChangeState(player.inAirState);
         }
         if (player.inputHandler.PressedAbility2)
         {
