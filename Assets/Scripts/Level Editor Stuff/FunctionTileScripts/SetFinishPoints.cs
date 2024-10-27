@@ -18,6 +18,7 @@ public class SetFinishPoints : GeneralFunctionTile
 
     public override void CustomTileFunc(Vector3 vect)
     {
-        Instantiate(finishLine, vect, Quaternion.identity, transform);
+        if (vect == Vector3.zero) Debug.Log("No End Goal Set");
+        else Instantiate(finishLine, vect, Quaternion.identity, transform);
     }
 }

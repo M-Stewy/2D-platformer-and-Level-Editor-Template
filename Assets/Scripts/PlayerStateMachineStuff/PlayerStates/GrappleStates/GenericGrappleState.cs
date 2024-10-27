@@ -26,6 +26,9 @@ public class GenericGrappleState : PlayerState
     {
         base.Enter();
         stopGrap = false;
+
+        player.rb.gravityScale = playerData.AirGravity;
+        player.rb.drag = playerData.AirDrag;
     }
 
     public override void Exit()
