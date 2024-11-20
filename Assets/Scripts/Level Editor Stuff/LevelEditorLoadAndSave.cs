@@ -29,6 +29,7 @@ namespace LevelEditor {
             Grid = GameObject.FindGameObjectWithTag("GridHolder");
             GenTileScritList();
             GenTileMapList();
+            GetBackgroundImgs();
 
             foreach (Tilemap tilemap in tilemaps)
             {
@@ -40,6 +41,8 @@ namespace LevelEditor {
                     }
                 }
             }
+
+          
 
             if (DataStorage.Instance != null)
                 foreach (string str in Directory.GetFiles(Application.dataPath + "/SaveFileFolder", "*.json"))
@@ -60,6 +63,10 @@ namespace LevelEditor {
         public List<CustomTileScritObj> tileScritList = new List<CustomTileScritObj>();
         [SerializeField] List<Tilemap> tilemaps = new List<Tilemap>();
         public Dictionary<int,Tilemap> tilelayers = new Dictionary<int,Tilemap>();
+        [Header("---TEMP BACKGROUND TESTING---")]
+        public Dictionary<string,Sprite> BackGroundSprites = new Dictionary<string,Sprite>();
+        [SerializeField] string choosenBackGround;
+        [SerializeField] BackGroundSetter backSetter;
 
         string fileSaveName = "Default";
         [SerializeField] TMP_InputField saveFileNameInput;
@@ -68,11 +75,11 @@ namespace LevelEditor {
         private void GenTileScritList()
         {
             string[] fileNames = AssetDatabase.FindAssets("Tile", new[] { "Assets/Scripts/Level Editor Stuff/CustomTileScritObjs" });
-            Debug.Log(fileNames.Length);
+            //Debug.Log(fileNames.Length);
 
             foreach (string file in fileNames)
             {
-                Debug.Log("Found asset: " + file);
+                //Debug.Log("Found TileScript asset: " + file);
                 var path = AssetDatabase.GUIDToAssetPath(file);
                 var tile = AssetDatabase.LoadAssetAtPath<CustomTileScritObj>(path);
                 tileScritList.Add(tile);
@@ -84,9 +91,27 @@ namespace LevelEditor {
             foreach(var tilemap in Grid.GetComponentsInChildren<Tilemap>())
             {
                 tilemaps.Add(tilemap);
+
             }
 
         }
+
+        private void GetBackgroundImgs()
+        {
+            string[] fileNames = AssetDatabase.FindAssets("BG", new[] { "Assets/Sprites/BGs" });
+            Debug.Log(fileNames.Length + " imgs found");
+
+            foreach (string file in fileNames)
+            {
+                Debug.Log("Found IMG asset: " + file);
+                var path = AssetDatabase.GUIDToAssetPath(file);
+                var sprite = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+                Debug.Log("Found the sprite : " + sprite.name + "");
+                BackGroundSprites.Add(sprite.name, sprite);
+            }
+            Debug.Log(BackGroundSprites.Count);
+        }
+
         /// <summary>
         /// If you are adding custom tiles, make sure you add a corresponding enum to this
         /// </summary>
@@ -112,6 +137,8 @@ namespace LevelEditor {
             Ground = 0,
             Foreground = 20
         }
+
+
 
         public void OnQSave(InputAction.CallbackContext context)
         {
@@ -159,6 +186,9 @@ namespace LevelEditor {
             {
                 levelData.layers.Add(new LayerData(item));
             }
+
+            levelData.backGround.Background = choosenBackGround;
+
 
             foreach (var layerData in levelData.layers)
             {
@@ -209,6 +239,8 @@ namespace LevelEditor {
             string json = File.ReadAllText(Application.dataPath + "/SaveFileFolder/" + fileSaveName + ".json");
             LevelData levelData = JsonUtility.FromJson<LevelData>(json);
 
+            GetBackGroundFromLevelData(levelData);
+
             foreach (var data in levelData.layers)
             {
                 if (!tilelayers.TryGetValue(data.layer_id, out Tilemap tilemap)) break;
@@ -239,6 +271,27 @@ namespace LevelEditor {
             }
         }
 
+        public void GetBackGroundFromLevelData(LevelData lvdt)
+        {
+            if(lvdt.backGround.Background == null)
+            {
+                Debug.Log("No data to read Background from!");
+                return;
+            }
+            if (BackGroundSprites.TryGetValue(lvdt.backGround.Background, out Sprite backGroundSprite))    
+                backSetter.SetBackGround(backGroundSprite);
+            else
+            {
+                backSetter.SetBackGround(null);
+                Debug.LogError("NO BACKGROUND SET");
+            }
+        }
+
+        public void setBackGroundImage(string bg)
+        {
+            choosenBackGround = bg;
+        }
+
     }
 
    
@@ -250,6 +303,7 @@ namespace LevelEditor {
     public class LevelData
     {
         public List<LayerData> layers = new List<LayerData>();
+        public BackGroundData backGround = new BackGroundData();
     }
 
     [Serializable]
@@ -264,5 +318,12 @@ namespace LevelEditor {
         {
             layer_id = id;
         }
+    }
+
+    [Serializable]
+    public class BackGroundData
+    {
+        public string Background;
+        public List<string> Foregrounds;
     }
 }
