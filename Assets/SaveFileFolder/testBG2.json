@@ -3,13 +3,22 @@
         {
             "layer_id": 23,
             "tiles": [
+                "AntiGrapp",
+                "AntiGrapp",
+                "AntiGrapp",
                 "AntiGrapp"
             ],
             "xPos": [
-                -4
+                -5,
+                -4,
+                0,
+                2
             ],
             "yPos": [
-                9
+                13,
+                9,
+                14,
+                8
             ]
         },
         {
@@ -494,7 +503,7 @@
         }
     ],
     "backGround": {
-        "Background": "BG_TEMP_sky",
+        "Background": "BG_TEMP_80s",
         "Foregrounds": []
     }
 }

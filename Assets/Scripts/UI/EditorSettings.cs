@@ -20,6 +20,15 @@ namespace LevelEditor {
             GenerateBackGroundButtons();
         }
 
+        private void OnDisable()
+        {
+            if (!DataStorage.Instance.isEditing) return;
+            foreach(BG_ButtonRemoveSelf child in GetComponentsInChildren<BG_ButtonRemoveSelf>() ) // this is scuffed as hell man
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
         // Update is called once per frame
         void Update()
         {
@@ -50,7 +59,6 @@ namespace LevelEditor {
                 trig.triggers.Add(entryexit);
                 */
             }
-
         }
 
 

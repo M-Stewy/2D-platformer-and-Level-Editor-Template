@@ -2,9 +2,15 @@
     "layers": [
         {
             "layer_id": 23,
-            "tiles": [],
-            "xPos": [],
-            "yPos": []
+            "tiles": [
+                "AntiGrapp"
+            ],
+            "xPos": [
+                -2
+            ],
+            "yPos": [
+                11
+            ]
         },
         {
             "layer_id": 15,
@@ -482,7 +488,7 @@
         }
     ],
     "backGround": {
-        "Background": "BG_TEMP_80s",
+        "Background": "BG_TEMP_sky",
         "Foregrounds": []
     }
 }
